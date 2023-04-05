@@ -1,4 +1,11 @@
-package main.java.com.cognixia.jump.tutorcapstone.model;
+package com.cognixia.jump.tutorcapstone.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class User {
@@ -14,16 +21,16 @@ public class User {
 
     @Pattern(regexp = "^.+@.+$")
     @Column(unique=true, nullable = false)
-    private string email;
+    private String email;
 
     private String description;
 
-    private string pfp_url;
+    private String pfp_url;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, string email, String description, string pfp_url) {
+    public User(Integer id, String username, String password, String email, String description, String pfp_url) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -56,11 +63,11 @@ public class User {
         this.password = password;
     }
 
-    public string getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(string email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -72,11 +79,11 @@ public class User {
         this.description = description;
     }
 
-    public string getPfp_url() {
+    public String getPfp_url() {
         return pfp_url;
     }
 
-    public void setPfp_url(string pfp_url) {
+    public void setPfp_url(String pfp_url) {
         this.pfp_url = pfp_url;
     }
 

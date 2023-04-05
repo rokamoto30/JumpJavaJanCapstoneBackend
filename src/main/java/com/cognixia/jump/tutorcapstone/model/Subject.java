@@ -1,4 +1,10 @@
-package main.java.com.cognixia.jump.tutorcapstone.model;
+package com.cognixia.jump.tutorcapstone.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Subject {
