@@ -8,6 +8,9 @@ public class TutorcapstoneApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TutorcapstoneApplication.class, args);
+		System.out.println("Hello Ryan");
+		System.out.println("Hello Alexis");
+
 	}
 
 }
