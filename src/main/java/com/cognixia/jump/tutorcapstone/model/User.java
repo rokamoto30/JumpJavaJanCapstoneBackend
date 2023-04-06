@@ -1,7 +1,5 @@
 package com.cognixia.jump.tutorcapstone.model;
-
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class User {
@@ -33,13 +32,14 @@ public class User {
 
     private String pfp_url;
 
-	@JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
     private List<Course> courses;
     
     @JsonIgnore
     @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
     private List<Session> sessions;
+
 
     public User() {
     }
@@ -124,11 +124,6 @@ public class User {
 				+ sessions + "]";
 	}
 
-    
-
-    
-
-    
 
 
 }
