@@ -8,12 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SessionRepo extends JpaRepository<Session,Integer> {
 	
-	@Query("SELECT AVG(s.rating) FROM session s WHERE s.course = ?1 GROUP BY s.course")
-	public Double courseAvarage(String course);
 	
-	@Query("SELECT AVG(s.rating) FROM session s LEFT JOIN course c WHERE c.tutor = ?1 GROUP BY c.tutor")
+	@Query(value = "SELECT AVG(s.rating) FROM session s LEFT JOIN course c ON s.course_id LEFT JOIN user u ON u.id WHERE u.username = ?1  GROUP BY u.username", nativeQuery = true)
 	public Double tutorAvarage(String tutor);
 	
-	
-
 }

@@ -36,6 +36,7 @@ public class SecurityConfiguration {
         http.csrf().disable()
         .authorizeRequests()
         .antMatchers("/authenticate").permitAll()
+        .antMatchers("/api/subject").permitAll()
         .anyRequest().authenticated()                                                           //any other request is authorized
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
