@@ -3,6 +3,7 @@ package com.cognixia.jump.tutorcapstone.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -37,6 +38,7 @@ public class SecurityConfiguration {
         .authorizeRequests()
         .antMatchers("/authenticate").permitAll()
         .antMatchers("/api/subject").permitAll()
+        .antMatchers(HttpMethod.POST, "/api/user").permitAll() 
         .anyRequest().authenticated()                                                           //any other request is authorized
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
