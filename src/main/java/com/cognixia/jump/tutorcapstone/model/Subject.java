@@ -1,7 +1,5 @@
 package com.cognixia.jump.tutorcapstone.model;
-
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+
+
 
 @Entity
 public class Subject {
@@ -29,6 +27,50 @@ public class Subject {
 	
 	
 	public Subject() {
+	}
+
+
+	public Subject(Integer id, String name, List<Course> courses) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.courses = courses;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Subject [id=" + id + ", name=" + name + ", courses=" + courses + "]";
 	}
 
 
