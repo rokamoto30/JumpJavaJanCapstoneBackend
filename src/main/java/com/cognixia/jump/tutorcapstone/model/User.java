@@ -1,11 +1,17 @@
 package com.cognixia.jump.tutorcapstone.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -27,6 +33,14 @@ public class User {
 
     private String pfp_url;
 
+	@JsonIgnore
+    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    private List<Course> courses;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    private List<Session> sessions;
+
     public User() {
     }
 
@@ -39,29 +53,29 @@ public class User {
         this.pfp_url = pfp_url;
     }
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
     public String getEmail() {
         return email;
@@ -71,13 +85,13 @@ public class User {
         this.email = email;
     }
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
     public String getPfp_url() {
         return pfp_url;
@@ -87,11 +101,30 @@ public class User {
         this.pfp_url = pfp_url;
     }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-                + ", description=" + description + ", pfp_url=" + pfp_url + "]";
-    }
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", description=" + description + ", pfp_url=" + pfp_url + ", courses=" + courses + ", sessions="
+				+ sessions + "]";
+	}
+
+    
 
     
 
