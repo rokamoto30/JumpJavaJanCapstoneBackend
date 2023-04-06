@@ -29,7 +29,7 @@ public class Course implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn( name = "user_id", referencedColumnName = "id")
-	private User user;
+	private User tutor;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -43,11 +43,11 @@ public class Course implements Serializable {
 		
 	}
 
-	public Course(Integer id, Subject subject, User user, List<Session> sessions, String availability, String hourly) {
+	public Course(Integer id, Subject subject, User tutor, List<Session> sessions, String availability, String hourly) {
 		super();
 		this.id = id;
 		this.subject = subject;
-		this.user = user;
+		this.tutor = tutor;
 		this.sessions = sessions;
 		this.availability = availability;
 		this.hourly = hourly;
@@ -69,12 +69,12 @@ public class Course implements Serializable {
 		this.subject = subject;
 	}
 
-	public User getUser() {
-		return user;
+	public User getTutor() {
+		return tutor;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setTutor(User user) {
+		this.tutor = user;
 	}
 
 	public List<Session> getSessions() {
@@ -103,7 +103,7 @@ public class Course implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Course [id=" + id + ", subject=" + subject + ", user=" + user + ", sessions=" + sessions
+		return "Course [id=" + id + ", subject=" + subject + ", tutor=" + tutor + ", sessions=" + sessions
 				+ ", availability=" + availability + ", hourly=" + hourly + "]";
 	}
 	
