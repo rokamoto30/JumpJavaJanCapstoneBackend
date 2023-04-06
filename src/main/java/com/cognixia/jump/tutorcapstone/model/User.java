@@ -1,4 +1,5 @@
 package com.cognixia.jump.tutorcapstone.model;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-public class User {
+public class User implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -33,11 +37,11 @@ public class User {
     private String pfp_url;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<Course> courses;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Session> sessions;
 
 
