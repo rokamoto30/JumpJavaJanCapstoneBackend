@@ -1,20 +1,15 @@
 package com.cognixia.jump.tutorcapstone.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Session {
@@ -33,13 +28,15 @@ public class Session {
 	private LocalDate start;
 	private LocalDate end;
 	
-	private float rating;
+	@Min(value=0)
+	@Max(value=5)
+	private Double rating;
 	
 	public Session () {
 		
 	}
 	
-	public Session(Integer id, Course course, User user, LocalDate start, LocalDate end, float rating) {
+	public Session(Integer id, Course course, User user, LocalDate start, LocalDate end, Double rating) {
 		super();
 		this.id = id;
 		this.course = course;
@@ -89,11 +86,11 @@ public class Session {
 		this.end = end;
 	}
 
-	public float getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
