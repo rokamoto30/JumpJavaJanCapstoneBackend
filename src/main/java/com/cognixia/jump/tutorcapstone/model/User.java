@@ -37,11 +37,11 @@ public class User implements Serializable {
     private String pfp_url;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<Course> courses;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Session> sessions;
 
 

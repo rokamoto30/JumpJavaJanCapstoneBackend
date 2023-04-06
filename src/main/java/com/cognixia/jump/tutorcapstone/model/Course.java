@@ -32,7 +32,7 @@ public class Course implements Serializable {
 	private User user;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "course_id", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Session> sessions;
 	
 	private String availability;

@@ -26,7 +26,7 @@ public class Subject implements Serializable {
 	private String name;
 	
 	@JsonIgnore
-    @OneToMany(mappedBy = "subject_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Course> courses;
 	
 	
