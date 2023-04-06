@@ -17,11 +17,11 @@ public interface SessionRepo extends JpaRepository<Session,Integer> {
 
 
 	//For students
-	@Query("SELECT * FROM session s WHERE s.user_id = ?1")
+	@Query(value = "SELECT * FROM session s WHERE s.user_id = ?1", nativeQuery = true)
 	public List<Session> getSessions(int id);
 	
 	//For tutors
-	@Query("SELECT s.id, s.end, s.rating, s.start, s.course_id, s.user_id FROM session s JOIN course c ON s.course_id = c.id WHERE c.user_id = ?1")
+	@Query(value = "SELECT s.id, s.end, s.rating, s.start, s.course_id, s.user_id FROM session s JOIN course c ON s.course_id = c.id WHERE c.user_id = ?1", nativeQuery = true)
 	public List<Session> getSessionsForTutors(int id);
 
 }
