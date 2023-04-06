@@ -1,4 +1,5 @@
 package com.cognixia.jump.tutorcapstone.model;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-public class User {
+public class User implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

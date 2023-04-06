@@ -1,5 +1,6 @@
 package com.cognixia.jump.tutorcapstone.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -12,7 +13,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Entity
-public class Session {
+public class Session implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
