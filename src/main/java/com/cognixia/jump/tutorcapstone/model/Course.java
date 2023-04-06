@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,13 +38,13 @@ public class Course implements Serializable {
 	
 	private String availability;
 	
-	private String hourly;
+	private Double hourly;
 	
 	public Course() {
 		
 	}
 
-	public Course(Integer id, Subject subject, User tutor, List<Session> sessions, String availability, String hourly) {
+	public Course(Integer id, Subject subject, User tutor, List<Session> sessions, String availability, Double hourly) {
 		super();
 		this.id = id;
 		this.subject = subject;
@@ -93,11 +94,11 @@ public class Course implements Serializable {
 		this.availability = availability;
 	}
 
-	public String getHourly() {
+	public Double getHourly() {
 		return hourly;
 	}
 
-	public void setHourly(String hourly) {
+	public void setHourly(Double hourly) {
 		this.hourly = hourly;
 	}
 
