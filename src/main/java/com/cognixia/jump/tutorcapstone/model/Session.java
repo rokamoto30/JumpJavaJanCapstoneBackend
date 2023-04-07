@@ -36,9 +36,7 @@ public class Session implements Serializable {
 	@Max(value=5)
 	private Double rating;
 	
-	public Session () {
-		
-	}
+	public Session () {}
 	
 	public Session(Integer id, Course course, User user, LocalDateTime start, LocalDateTime end, Double rating) {
 		super();
