@@ -37,7 +37,7 @@ public class Session implements Serializable {
 	private LocalDateTime start;
 	private LocalDateTime end;
 	
-	private float rating;
+	private Double rating;
 	
 	public Session () {
 		
@@ -96,11 +96,11 @@ public class Session implements Serializable {
 		this.end = end;
 	}
 
-	public float getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 

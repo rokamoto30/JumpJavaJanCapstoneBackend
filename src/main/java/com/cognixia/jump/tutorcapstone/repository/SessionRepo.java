@@ -25,6 +25,6 @@ public interface SessionRepo extends JpaRepository<Session,Integer> {
 	public List<Session> getSessionsForTutors(int id);
 	
 	
-	@Query(value = "SELECT c.hourly * (s.end -s.start) FROM session s LEFT JOIN course c ON s.course_id = c.id WHERE s.id = 1;", nativeQuery = true)
+	@Query(value = "SELECT c.hourly FROM session s LEFT JOIN course c ON s.course_id = c.id WHERE s.id = 1;", nativeQuery = true)
 	public Double cost(int id);
 }

@@ -42,7 +42,7 @@ public class CourseController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> createCourse(@Valid @RequestBody Course course) {
-		
+		course.setId(null);
 		Course created = service.createCourse(course);
 		
 		return ResponseEntity.status(201).body(created);
@@ -64,7 +64,7 @@ public class CourseController {
 		service.deleteCourse(id);
 			
 		return ResponseEntity.status(200)
-							 .body("Deleted Student with id = " + id);
+							 .body("Deleted Course with id = " + id);
 	
 	}
 	
