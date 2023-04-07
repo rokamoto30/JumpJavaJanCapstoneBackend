@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -38,6 +39,7 @@ public class SecurityConfiguration {
         .authorizeRequests()
         .antMatchers("/authenticate").permitAll()
         .antMatchers("/api/subject").permitAll()
+        .antMatchers("/api/user").permitAll()
         .antMatchers(HttpMethod.POST, "/api/user").permitAll() 
         .anyRequest().authenticated()                                                           //any other request is authorized
         .and()
@@ -52,6 +54,7 @@ public class SecurityConfiguration {
     @Bean
     protected PasswordEncoder encoder(){
 
+        //return NoOpPasswordEncoder.getInstance();
         return new BCryptPasswordEncoder();
     }
 
