@@ -21,6 +21,10 @@ public class SessionService {
         Session created = repo.save(session);
         return created;
     }
+    
+    public Double getCost(int id) {
+    	return repo.cost(id);
+    }
 
     public boolean deleteSession(int id) throws ResourceNotFoundException {
 		
