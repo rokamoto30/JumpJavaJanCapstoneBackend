@@ -31,6 +31,12 @@ public class UserController {
 		
 		return service.getUsers();
 	}
+    
+    @GetMapping("/user/tutors")
+    public List<User> getTutors() {
+		
+		return service.getTutors();
+	}
 
     @GetMapping("/user/{id}")
 	public ResponseEntity<?> getUser(@PathVariable int id) throws ResourceNotFoundException {
