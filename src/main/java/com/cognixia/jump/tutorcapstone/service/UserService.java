@@ -27,6 +27,10 @@ public class UserService {
 		
 		return repo.findAll();
 	}
+    
+    public List<User> getTutors() {
+    	return repo.getTutors();
+    }
 
     public User getUserById(int id) throws ResourceNotFoundException {
 		

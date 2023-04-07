@@ -37,6 +37,11 @@ public class SessionController {
 	public List<Session> getStudentSessions(@PathVariable int id) {
 		return service.getSessionByStudent(id);
 	}
+    
+    @GetMapping("/student/session/cost/{sessionId}")
+	public Double getCost(@PathVariable int sessionId) {
+		return service.getCost(sessionId);
+	}
 
     @GetMapping("/tutor/session/{id}")
 	public List<Session> getTutorSessions(@PathVariable int id) {
