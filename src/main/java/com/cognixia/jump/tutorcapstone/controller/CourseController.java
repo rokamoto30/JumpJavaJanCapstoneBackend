@@ -29,13 +29,13 @@ public class CourseController {
 	
 	@GetMapping()
 	public List<Course> getCourse() {
-		return service.findAll();
+		return service.getCourses();
 	}
-	@GetMapping("subject/{subject}")
+	@GetMapping("/subject/{subject}")
 	public List<Course> getCourseBySubject(@PathVariable String subject) {
 		return service.findBySubject(subject);
 	}
-	@GetMapping("user_id/{user_id}")
+	@GetMapping("/user_id/{user_id}")
 	public List<Course> getCourseByTutor(@PathVariable Integer user_id) {
 		return service.findByUserId(user_id);
 	}
