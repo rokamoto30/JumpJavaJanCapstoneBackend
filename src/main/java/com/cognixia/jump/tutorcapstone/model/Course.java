@@ -1,8 +1,10 @@
 package com.cognixia.jump.tutorcapstone.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,10 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Course {
+public class Course implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -25,25 +30,25 @@ public class Course {
 	
 	@ManyToOne
 	@JoinColumn( name = "user_id", referencedColumnName = "id")
-	private User user;
+	private User tutor;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "course_id", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Session> sessions;
 	
 	private String availability;
 	
-	private String hourly;
+	private Double hourly;
 	
 	public Course() {
 		
 	}
 
-	public Course(Integer id, Subject subject, User user, List<Session> sessions, String availability, String hourly) {
+	public Course(Integer id, Subject subject, User tutor, List<Session> sessions, String availability, Double hourly) {
 		super();
 		this.id = id;
 		this.subject = subject;
-		this.user = user;
+		this.tutor = tutor;
 		this.sessions = sessions;
 		this.availability = availability;
 		this.hourly = hourly;
@@ -65,12 +70,12 @@ public class Course {
 		this.subject = subject;
 	}
 
-	public User getUser() {
-		return user;
+	public User getTutor() {
+		return tutor;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setTutor(User user) {
+		this.tutor = user;
 	}
 
 	public List<Session> getSessions() {
@@ -89,17 +94,17 @@ public class Course {
 		this.availability = availability;
 	}
 
-	public String getHourly() {
+	public Double getHourly() {
 		return hourly;
 	}
 
-	public void setHourly(String hourly) {
+	public void setHourly(Double hourly) {
 		this.hourly = hourly;
 	}
 
 	@Override
 	public String toString() {
-		return "Course [id=" + id + ", subject=" + subject + ", user=" + user + ", sessions=" + sessions
+		return "Course [id=" + id + ", subject=" + subject + ", tutor=" + tutor + ", sessions=" + sessions
 				+ ", availability=" + availability + ", hourly=" + hourly + "]";
 	}
 	

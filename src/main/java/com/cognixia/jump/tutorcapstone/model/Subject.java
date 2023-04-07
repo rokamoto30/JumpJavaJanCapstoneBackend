@@ -1,4 +1,5 @@
 package com.cognixia.jump.tutorcapstone.model;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-public class Subject {
+public class Subject implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -22,7 +26,7 @@ public class Subject {
 	private String name;
 	
 	@JsonIgnore
-    @OneToMany(mappedBy = "subject_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
     private List<Course> courses;
 	
 	

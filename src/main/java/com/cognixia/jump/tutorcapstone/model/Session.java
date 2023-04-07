@@ -1,7 +1,9 @@
 package com.cognixia.jump.tutorcapstone.model;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.io.Serializable;
+
+import java.time.LocalDateTime;
+
 
 import javax.persistence.Access;
 import javax.persistence.CascadeType;
@@ -17,7 +19,9 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-public class Session {
+public class Session implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -30,8 +34,8 @@ public class Session {
 	@JoinColumn( name = "user_id", referencedColumnName = "id")
 	private User user;
 	
-	private LocalDate start;
-	private LocalDate end;
+	private LocalDateTime start;
+	private LocalDateTime end;
 	
 	private float rating;
 	
@@ -39,7 +43,10 @@ public class Session {
 		
 	}
 	
-	public Session(Integer id, Course course, User user, LocalDate start, LocalDate end, float rating) {
+
+
+	public Session(Integer id, Course course, User user, LocalDateTime start, LocalDateTime end, Double rating) {
+
 		super();
 		this.id = id;
 		this.course = course;
@@ -73,19 +80,19 @@ public class Session {
 		this.user = user;
 	}
 
-	public LocalDate getStart() {
+	public LocalDateTime getStart() {
 		return start;
 	}
 
-	public void setStart(LocalDate start) {
+	public void setStart(LocalDateTime start) {
 		this.start = start;
 	}
 
-	public LocalDate getEnd() {
+	public LocalDateTime getEnd() {
 		return end;
 	}
 
-	public void setEnd(LocalDate end) {
+	public void setEnd(LocalDateTime end) {
 		this.end = end;
 	}
 
