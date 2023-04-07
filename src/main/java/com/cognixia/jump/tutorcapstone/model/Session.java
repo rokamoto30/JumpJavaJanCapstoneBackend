@@ -1,17 +1,22 @@
 package com.cognixia.jump.tutorcapstone.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
+
+import javax.persistence.Access;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Session implements Serializable {
@@ -32,15 +37,16 @@ public class Session implements Serializable {
 	private LocalDateTime start;
 	private LocalDateTime end;
 	
-	@Min(value=0)
-	@Max(value=5)
-	private Double rating;
+	private float rating;
 	
 	public Session () {
 		
 	}
 	
+
+
 	public Session(Integer id, Course course, User user, LocalDateTime start, LocalDateTime end, Double rating) {
+
 		super();
 		this.id = id;
 		this.course = course;
@@ -90,11 +96,11 @@ public class Session implements Serializable {
 		this.end = end;
 	}
 
-	public Double getRating() {
+	public float getRating() {
 		return rating;
 	}
 
-	public void setRating(Double rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 
