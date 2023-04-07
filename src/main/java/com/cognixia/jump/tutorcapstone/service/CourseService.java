@@ -45,7 +45,7 @@ public class CourseService {
 		return repo.findByUserId(id);
 	}
 	
-	public List<Course> findAll() {
+	public List<Course> getCourses() {
 		return repo.findAll();
 	}
 	 
