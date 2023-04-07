@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,8 +38,9 @@ public class Session implements Serializable {
 	
 	private LocalDateTime start;
 	private LocalDateTime end;
-	
-	private float rating;
+	@Min(value=0)
+	@Max(value=5)
+	private Double rating;
 	
 	public Session () {
 		
@@ -96,11 +99,11 @@ public class Session implements Serializable {
 		this.end = end;
 	}
 
-	public float getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
