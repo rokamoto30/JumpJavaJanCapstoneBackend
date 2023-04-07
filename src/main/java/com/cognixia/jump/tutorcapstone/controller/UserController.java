@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,9 @@ public class UserController {
 
     @Autowired
     UserService service;
+
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
     @GetMapping("/user")
     public List<User> getUsers() {
@@ -49,7 +53,8 @@ public class UserController {
 
     @PostMapping("/user")
 	public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
-		
+		user.setId(null);
+		user.setPassword(encoder.encode(user.getPassword()));
 		User created = service.createUser(user);
 		
 		return ResponseEntity.status(201).body(created);
