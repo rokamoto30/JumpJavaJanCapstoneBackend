@@ -43,6 +43,16 @@ public class UserService {
 		return found.get();
 	}
 
+	public  User getUserByUsername(String username) throws ResourceNotFoundException{
+		Optional<User> found=repo.findByUsername(username);
+
+		if(found.isEmpty()) {
+			throw new ResourceNotFoundException("No such user exists");
+		}
+
+		return found.get();
+	}
+
     public User updateUser(User user) throws ResourceNotFoundException {
 		
 		boolean exists = repo.existsById(user.getId());
