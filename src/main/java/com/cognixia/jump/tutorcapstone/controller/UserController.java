@@ -48,7 +48,7 @@ public class UserController {
 		User found = service.getUserById(id);
 		
 		return ResponseEntity.status(200).body( found );
-		
+		 
 	}
 @GetMapping("/user/name/{username}")
 public ResponseEntity<?>getUserByUsername(@PathVariable String username) throws ResourceNotFoundException{
