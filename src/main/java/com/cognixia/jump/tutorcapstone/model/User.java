@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
 public class User implements Serializable {
