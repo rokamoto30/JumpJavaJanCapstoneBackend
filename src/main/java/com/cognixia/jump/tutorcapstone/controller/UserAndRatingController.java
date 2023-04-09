@@ -13,7 +13,7 @@ import com.cognixia.jump.tutorcapstone.service.UserAndRatingService;
 
 @RestController
 @RequestMapping("/api")
-public class UserAndServiceController {
+public class UserAndRatingController {
 	
 	@Autowired
     UserAndRatingService service;
