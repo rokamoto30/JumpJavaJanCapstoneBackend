@@ -45,7 +45,8 @@ public class SecurityConfiguration {
         .antMatchers("/api/tutor/session").hasRole("USER")
         .antMatchers("/api/subject").hasRole("USER")
         .antMatchers("/api/user/tutors").hasRole("USER")
-        .antMatchers("/swagger-ui/index.html").permitAll() 
+        .antMatchers("/swagger-ui/**").permitAll() 
+        .antMatchers("/v3/api-docs/**").permitAll()
         .antMatchers(HttpMethod.GET,"/api/user").hasRole("USER")
         .antMatchers(HttpMethod.GET,"/api/user/name/**").hasRole("USER")
         .antMatchers(HttpMethod.PUT,"/api/user").hasRole("USER")
@@ -54,7 +55,6 @@ public class SecurityConfiguration {
         .anyRequest().authenticated()
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
-        
         //this request will go through many filters, but first it goes through the jwt filter so if a user is logged in they can use their token instead of checking username & password
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         

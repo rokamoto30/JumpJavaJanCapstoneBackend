@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 public class Course implements Serializable {
 	
@@ -26,18 +28,23 @@ public class Course implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn( name = "subject_id", referencedColumnName = "id")
+	@Schema(description="linked subject for this course")
 	private Subject subject;
 	
 	@ManyToOne
 	@JoinColumn( name = "user_id", referencedColumnName = "id")
+	@Schema(description="linked user who will act as the tutor for this course")
 	private User tutor;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@Schema(description="list of sessions referencing this course")
 	private List<Session> sessions;
 	
+	@Schema(description="String to describe avalibility", example="7:00am-5:00pm central Monday-Friday")
 	private String availability;
 	
+	@Schema(description="Double to describe hourly rate", example="20.00")
 	private Double hourly;
 	
 	public Course() {
