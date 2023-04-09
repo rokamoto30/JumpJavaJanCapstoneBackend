@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,12 +38,11 @@ public class Session implements Serializable {
 	
 	private LocalDateTime start;
 	private LocalDateTime end;
-	
+	@Min(value=0)
+	@Max(value=5)
 	private Double rating;
 	
-	public Session () {
-		
-	}
+	public Session () {}
 	
 
 

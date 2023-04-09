@@ -1,6 +1,8 @@
 package com.cognixia.jump.tutorcapstone.model;
+
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +13,10 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
-public class User implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class UserAndRating implements Serializable {
+private static final long serialVersionUID = 1L;
 	
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,8 @@ public class User implements Serializable {
 
     private String pfp_url;
     
+    Double rating;
+    
 
     @JsonIgnore
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
@@ -46,20 +48,27 @@ public class User implements Serializable {
     private List<Session> sessions;
 
 
-    public User() {
+    public UserAndRating() {
     }
 
-    public User(Integer id, String username, String password, String email, String description, String pfp_url) {
+    public UserAndRating(Integer id, String username, String password, String email, String description, String pfp_url, Double rating) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.description = description;
         this.pfp_url = pfp_url;
+        this.rating = rating;
     }
-    
-    
 
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
 
 	public Integer getId() {
 		return id;
@@ -132,7 +141,5 @@ public class User implements Serializable {
 				+ ", description=" + description + ", pfp_url=" + pfp_url + ", courses=" + courses + ", sessions="
 				+ sessions + "]";
 	}
-
-
 
 }

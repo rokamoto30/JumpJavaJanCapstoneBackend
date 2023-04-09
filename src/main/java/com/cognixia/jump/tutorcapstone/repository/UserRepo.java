@@ -1,6 +1,7 @@
 package com.cognixia.jump.tutorcapstone.repository;
 
 import com.cognixia.jump.tutorcapstone.model.User;
+import com.cognixia.jump.tutorcapstone.model.UserAndRating;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     public Optional<User> findByUsername(String username);
     
-    @Query(value = "SELECT * FROM user u INNER JOIN course c ON u.id = c.user_id", nativeQuery = true)
-    public List<User> getTutors();
 
+    @Query(value = "SELECT * FROM user u INNER JOIN course c ON u.id = c.user_id", nativeQuery = true)
+    public List<User> getTutors(); 
 }
