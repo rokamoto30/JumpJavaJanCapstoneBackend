@@ -20,6 +20,8 @@ import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 public class Session implements Serializable {
 	
@@ -30,16 +32,20 @@ public class Session implements Serializable {
 
 	@ManyToOne
 	@JoinColumn( name = "course_id", referencedColumnName = "id")
+	@Schema(description="linked course")
 	private Course course;
 	
 	@ManyToOne
 	@JoinColumn( name = "user_id", referencedColumnName = "id")
+	@Schema(description="linked user to act as the student")
 	private User user;
-	
+	@Schema(description="start time", example=" [2023, 4, 9, 17, 33]")
 	private LocalDateTime start;
+	@Schema(description="end time", example=" [2023, 4, 9, 17, 33]")
 	private LocalDateTime end;
 	@Min(value=0)
 	@Max(value=5)
+	@Schema(description="rating from 0-5", example="3.5")
 	private Double rating;
 	
 	public Session () {}

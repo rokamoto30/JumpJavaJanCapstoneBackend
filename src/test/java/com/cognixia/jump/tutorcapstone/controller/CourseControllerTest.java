@@ -23,6 +23,8 @@ import com.cognixia.jump.tutorcapstone.model.Session;
 import com.cognixia.jump.tutorcapstone.model.Subject;
 import com.cognixia.jump.tutorcapstone.model.User;
 import com.cognixia.jump.tutorcapstone.service.CourseService;
+import com.cognixia.jump.tutorcapstone.service.MyUserDetailsService;
+import com.cognixia.jump.tutorcapstone.util.JwtUtil;
 
 
 @WebMvcTest(CourseController.class)
@@ -48,6 +50,12 @@ public class CourseControllerTest {
 	@MockBean
 	private CourseService service;
 	
+	@MockBean
+	private MyUserDetailsService myUserDetailsService;
+	
+	@MockBean
+	private JwtUtil jwtUtil;
+	
 	@InjectMocks
 	private CourseController controller;
 	
@@ -66,7 +74,7 @@ public class CourseControllerTest {
 	@Test
 	void testGetCourseBySubject() throws Exception {
 		when(service.findBySubject("Math")).thenReturn(allCourses);
-		String uri = STARTING_URI + "subject/{Math}";
+		String uri = STARTING_URI + "/subject/Math";
 		mvc.perform(get(uri))
 		.andDo(print())
 		.andExpect(status().isOk());
@@ -78,7 +86,7 @@ public class CourseControllerTest {
 	@Test
 	void getCourseByTutor() throws Exception {
 		when(service.findByUserId(1)).thenReturn(allCourses);
-		String uri = STARTING_URI + "user_id/{1}";
+		String uri = STARTING_URI + "/user_id/1";
 		mvc.perform(get(uri))
 		.andDo(print())
 		.andExpect(status().isOk());
