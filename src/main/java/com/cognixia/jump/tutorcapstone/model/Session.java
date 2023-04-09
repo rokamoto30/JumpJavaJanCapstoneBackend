@@ -34,6 +34,7 @@ public class Session implements Serializable {
 	@JoinColumn( name = "course_id", referencedColumnName = "id")
 	@Schema(description="linked course")
 	private Course course;
+
 	
 	@ManyToOne
 	@JoinColumn( name = "user_id", referencedColumnName = "id")
