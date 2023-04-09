@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.tutorcapstone.exception.ResourceNotFoundException;
 import com.cognixia.jump.tutorcapstone.model.User;
+import com.cognixia.jump.tutorcapstone.model.UserAndRating;
 import com.cognixia.jump.tutorcapstone.service.UserService;
 
 @RestController
@@ -50,12 +51,12 @@ public class UserController {
 		return ResponseEntity.status(200).body( found );
 		 
 	}
-@GetMapping("/user/name/{username}")
-public ResponseEntity<?>getUserByUsername(@PathVariable String username) throws ResourceNotFoundException{
-User found=service.getUserByUsername(username);
-return ResponseEntity.status(200).body(found);
-
-}
+	@GetMapping("/user/name/{username}")
+	public ResponseEntity<?>getUserByUsername(@PathVariable String username) throws ResourceNotFoundException{
+		User found=service.getUserByUsername(username);
+		return ResponseEntity.status(200).body(found);
+	
+	}
     @PostMapping("/user")
 	public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
 		user.setId(null);

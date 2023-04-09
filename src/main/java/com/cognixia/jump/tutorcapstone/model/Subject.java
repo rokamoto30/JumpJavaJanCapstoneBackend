@@ -25,6 +25,12 @@ public class Subject implements Serializable {
 	@Column(nullable = false)
 	private String name;
 	
+	@Column(nullable = true)
+	private String category;
+	
+	@Column(nullable = true)
+	private String description;
+	
 	@JsonIgnore
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
     private List<Course> courses;
@@ -34,10 +40,12 @@ public class Subject implements Serializable {
 	}
 
 
-	public Subject(Integer id, String name, List<Course> courses) {
+	public Subject(Integer id, String name, String category, String description, List<Course> courses) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.category = category;
+		this.description = description;
 		this.courses = courses;
 	}
 
@@ -62,6 +70,26 @@ public class Subject implements Serializable {
 	}
 
 
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
 	public List<Course> getCourses() {
 		return courses;
 	}
@@ -74,8 +102,12 @@ public class Subject implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", courses=" + courses + "]";
+		return "Subject [id=" + id + ", name=" + name + ", category=" + category + ", description=" + description
+				+ ", courses=" + courses + "]";
 	}
+
+	
+	
 
 
 

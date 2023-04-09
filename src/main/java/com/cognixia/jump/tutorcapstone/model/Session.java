@@ -42,9 +42,7 @@ public class Session implements Serializable {
 	@Max(value=5)
 	private Double rating;
 	
-	public Session () {
-		
-	}
+	public Session () {}
 	
 
 
