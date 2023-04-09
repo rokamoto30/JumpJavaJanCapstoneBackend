@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.tutorcapstone.exception.ResourceNotFoundException;
 import com.cognixia.jump.tutorcapstone.model.User;
+import com.cognixia.jump.tutorcapstone.model.UserAndRating;
 import com.cognixia.jump.tutorcapstone.service.UserService;
 
 @RestController

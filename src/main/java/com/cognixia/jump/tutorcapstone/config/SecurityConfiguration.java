@@ -44,12 +44,13 @@ public class SecurityConfiguration {
         .antMatchers("/api/student/session/cost").hasRole("USER")
         .antMatchers("/api/tutor/session").hasRole("USER")
         .antMatchers("/api/subject").hasRole("USER")
-        .antMatchers("/api/user/tutors").hasRole("USER")    
+        .antMatchers("/api/user/tutors").hasRole("USER")
+        .antMatchers("/swagger-ui/index.html").permitAll() 
         .antMatchers(HttpMethod.GET,"/api/user").hasRole("USER")
         .antMatchers(HttpMethod.PUT,"/api/user").hasRole("USER")
         .antMatchers(HttpMethod.DELETE,"/api/user").hasRole("USER")   
         .antMatchers(HttpMethod.POST, "/api/user").permitAll() 
-        .anyRequest().authenticated()                                                           //any other request is authorized
+        .anyRequest().authenticated()
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
         

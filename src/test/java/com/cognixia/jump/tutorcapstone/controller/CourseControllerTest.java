@@ -53,13 +53,13 @@ public class CourseControllerTest {
 	
 	@Test
 	void testGetCourse() throws Exception {		
-		when(service.findAll()).thenReturn(allCourses);
+		when(service.getCourses()).thenReturn(allCourses);
 		
 		mvc.perform(get(STARTING_URI))
 		.andDo(print())
 		.andExpect(status().isOk());
 		
-		verify(service, times(1)).findAll();
+		verify(service, times(1)).getCourses();
 		verifyNoMoreInteractions(service);
 	}
 	
@@ -71,7 +71,7 @@ public class CourseControllerTest {
 		.andDo(print())
 		.andExpect(status().isOk());
 		
-		verify(service, times(1)).findAll();
+		verify(service, times(1)).findBySubject("Math");
 		verifyNoMoreInteractions(service);
 	}
 	
@@ -83,7 +83,7 @@ public class CourseControllerTest {
 		.andDo(print())
 		.andExpect(status().isOk());
 		
-		verify(service, times(1)).findAll();
+		verify(service, times(1)).findByUserId(1);
 		verifyNoMoreInteractions(service);
 	}
 }
