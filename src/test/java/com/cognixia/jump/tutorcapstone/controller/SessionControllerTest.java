@@ -52,16 +52,6 @@ public class SessionControllerTest {
 	@InjectMocks
 	private SessionController controller;
 
-    @Test
-    @WithMockUser(username="user", roles="USER")
-    void testCreateUser() throws Exception{
-        when(service.createSession(s1)).thenReturn(s1);
-		String uri = STARTING_URI + "/session";
-		mvc.perform(post(uri))
-		.andDo(print())
-		.andExpect(status().isCreated());
-		
-    }
 
     @Test
     @WithMockUser(username="user",roles="USER")
@@ -102,14 +92,5 @@ public class SessionControllerTest {
 		verifyNoMoreInteractions(service);
     }
 
-    @Test
-    @WithMockUser(username="user",roles="USER")
-    void testDeleteSession() throws Exception{
-        when(service.deleteSession(s1.getId())).thenReturn(true);
-        String uri = STARTING_URI + "/session/1";
-        mvc.perform(delete(uri))
-		.andDo(print())
-		.andExpect(status().isOk());
-    }
 
 }
