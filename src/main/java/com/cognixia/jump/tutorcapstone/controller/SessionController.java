@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +37,20 @@ public class SessionController {
     @GetMapping("/student/session/{id}")
 	public List<Session> getStudentSessions(@PathVariable int id) {
 		return service.getSessionByStudent(id);
+	}
+    
+    @GetMapping("/session/{id}")
+	public Session getSessionById(@PathVariable int id) throws ResourceNotFoundException {
+		return service.getById(id);
+	}
+    
+    @PatchMapping("/session/rating/{id}/{rating}")
+    public ResponseEntity<?> updateMajor(@PathVariable int id, @PathVariable Double rating) throws ResourceNotFoundException {
+		
+		Session updated = service.updateRating(rating, id);
+		
+		return ResponseEntity.status(200)
+							 .body(updated);
 	}
     
     @GetMapping("/student/session/cost/{sessionId}")

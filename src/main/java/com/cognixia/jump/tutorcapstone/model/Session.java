@@ -44,10 +44,14 @@ public class Session implements Serializable {
 	private LocalDateTime start;
 	@Schema(description="end time", example=" [2023, 4, 9, 17, 33]")
 	private LocalDateTime end;
+	
 	@Min(value=0)
 	@Max(value=5)
 	@Schema(description="rating from 0-5", example="3.5")
 	private Double rating;
+	
+	@Schema(description="cost")
+	private Double cost;
 	
 	public Session () {}
 	
@@ -63,6 +67,16 @@ public class Session implements Serializable {
 		this.end = end;
 		this.rating = rating;
 	}
+	
+	public Double getCost() {
+		return cost;
+	}
+
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
+
 
 	public Integer getId() {
 		return id;
