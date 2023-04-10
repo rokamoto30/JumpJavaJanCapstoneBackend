@@ -21,12 +21,9 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-<<<<<<< HEAD
 import org.springframework.http.MediaType;
-=======
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.test.context.support.WithMockUser;
->>>>>>> 69133e1eef61e3e12cdebb7815dead726e62b261
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.cognixia.jump.tutorcapstone.model.Course;
