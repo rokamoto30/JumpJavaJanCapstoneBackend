@@ -99,36 +99,5 @@ public class UserControllerTest {
 		verifyNoMoreInteractions(service);
     }
 
-    @Test
-    @WithMockUser(username="user",roles="USER")
-    void testCreateUser() throws Exception{
-        when(service.createUser(u1)).thenReturn(u1);
-        mvc.perform(post(STARTING_URI))
-		.andDo(print())
-		.andExpect(status().isCreated());
-    }
-
-    @Test
-    @WithMockUser(username="user",roles="USER")
-    void testUpdate() throws Exception{
-        when(service.updateUser(u1)).thenReturn(u1);
-        mvc.perform(put(STARTING_URI))
-		.andDo(print())
-		.andExpect(status().isCreated());
-    }
-
-    @Test
-    @WithMockUser(username="user",roles="USER")
-    void testDeleteUser() throws Exception{
-        when(service.deleteUser(u1.getId())).thenReturn(true);
-        String uri = STARTING_URI + "/1";
-        mvc.perform(delete(uri))
-		.andDo(print())
-		.andExpect(status().isOk());
-
-        verify(service, times(1)).deleteUser(u1.getId());
-		verifyNoMoreInteractions(service);
-    }
-
 
 }

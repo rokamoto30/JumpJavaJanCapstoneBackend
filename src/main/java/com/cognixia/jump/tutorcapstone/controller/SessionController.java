@@ -51,7 +51,7 @@ public class SessionController {
     
     @PatchMapping("/session/rating/{id}/{rating}")
     @Operation(summary="update rating", description="params: session id, new rating")
-    public ResponseEntity<?> updateMajor(@PathVariable int id, @PathVariable Double rating) throws ResourceNotFoundException {
+    public ResponseEntity<?> updateMajor(@PathVariable int id, @Valid @PathVariable Double rating) throws ResourceNotFoundException {
 		
 		Session updated = service.updateRating(rating, id);
 		

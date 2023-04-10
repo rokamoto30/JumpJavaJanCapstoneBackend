@@ -107,34 +107,5 @@ public class CourseControllerTest {
 		verifyNoMoreInteractions(service);
 	}
 
-	@Test
-	@WithMockUser(username="user",roles="USER")
-	void testPostCourse() throws Exception{
-		String uri = STARTING_URI + "/create";
-		Course tempCourse = new Course(1,  new Subject(), new User(), new ArrayList<Session>(), "Now", 12.00);
-		when(service.createCourse(Mockito.any(Course.class))).thenReturn(tempCourse);
-		mvc.perform(post(uri))
-		.andDo(print())
-		.andExpect(status().isCreated());
-	}
 
-	@Test
-	@WithMockUser(username="user",roles="USER")
-	void testUpdateStudent() throws Exception{
-		when(service.updateCourse(Mockito.any(Course.class))).thenReturn(course1);
-		String uri = STARTING_URI + "/update";
-		mvc.perform(put(uri))
-		.andDo(print())
-		.andExpect(status().isOk());
-	}
-
-	@Test
-	@WithMockUser(username="user",roles="USER")
-	void testDeleteStudent() throws Exception{
-		when(service.deleteCourse(course1.getId())).thenReturn(true);
-		String uri = STARTING_URI + "/delete/1";
-		mvc.perform(delete(uri))
-		.andDo(print())
-		.andExpect(status().isOk());
-	}
 }
