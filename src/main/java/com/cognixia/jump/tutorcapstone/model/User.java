@@ -44,6 +44,9 @@ public class User implements Serializable {
     @Schema(description="url to profile picture")
     private String pfp_url;
     
+    @Schema(description="user avarage rating")
+    private String rating;
+    
 
     @JsonIgnore
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
@@ -55,21 +58,32 @@ public class User implements Serializable {
     @Schema(description="list of sessions a user has attended")
     private List<Session> sessions;
 
-
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, String description, String pfp_url) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.description = description;
-        this.pfp_url = pfp_url;
-    }
-    
-    
+	public User(Integer id, String username, String password, @Pattern(regexp = "^.+@.+$") String email,
+			String description, String pfp_url, String rating, List<Course> courses, List<Session> sessions) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.description = description;
+		this.pfp_url = pfp_url;
+		this.rating = rating;
+		this.courses = courses;
+		this.sessions = sessions;
+	}
 
+
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
 
 	public Integer getId() {
 		return id;
