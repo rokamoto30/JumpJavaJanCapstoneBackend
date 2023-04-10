@@ -11,6 +11,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
@@ -23,43 +26,64 @@ public class User implements Serializable {
 	private Integer id;
 	
 	@Column(unique = true, nullable = false)
+	@Schema(description="username to be used with login")
 	private String username;
 
     @Column(nullable = false)
+    @Schema(description="password to be used with login")
 	private String password;
 
     @Pattern(regexp = "^.+@.+$")
     @Column(unique=true, nullable = false)
+    @Schema(description="email contact to connect tutors and students")
     private String email;
-
+    
+    @Schema(description="personal profile description")
     private String description;
-
+    
+    @Schema(description="url to profile picture")
     private String pfp_url;
+    
+    @Schema(description="user avarage rating")
+    private String rating;
     
 
     @JsonIgnore
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    @Schema(description="list of courses a user is teaching")
     private List<Course> courses;
     
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @Schema(description="list of sessions a user has attended")
     private List<Session> sessions;
-
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, String description, String pfp_url) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.description = description;
-        this.pfp_url = pfp_url;
-    }
-    
-    
+	public User(Integer id, String username, String password, @Pattern(regexp = "^.+@.+$") String email,
+			String description, String pfp_url, String rating, List<Course> courses, List<Session> sessions) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.description = description;
+		this.pfp_url = pfp_url;
+		this.rating = rating;
+		this.courses = courses;
+		this.sessions = sessions;
+	}
 
+
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
 
 	public Integer getId() {
 		return id;

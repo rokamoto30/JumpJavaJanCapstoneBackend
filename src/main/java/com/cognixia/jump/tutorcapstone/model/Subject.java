@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 
 
@@ -19,20 +21,24 @@ public class Subject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(nullable = false)
+	@Schema(description="subject name (specific subject)", example="algebra")
 	private String name;
 	
 	@Column(nullable = true)
+	@Schema(description="subject category (general field)", example="math")
 	private String category;
 	
 	@Column(nullable = true)
+	@Schema(description="description of the subject", example="(for trig) the branch of mathematics dealing with the relations of the sides and angles of triangles and with the relevant functions of any angles.")
 	private String description;
 	
 	@JsonIgnore
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+	@Schema(description="list of courses teaching this subject")
     private List<Course> courses;
 	
 	
