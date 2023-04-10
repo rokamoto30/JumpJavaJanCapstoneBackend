@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 import java.util.ArrayList;
@@ -107,6 +108,7 @@ public class CourseControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username="user",roles="USER")
 	void testPostCourse() throws Exception{
 		String uri = STARTING_URI + "/create";
 		Course tempCourse = new Course(1,  new Subject(), new User(), new ArrayList<Session>(), "Now", 12.00);
@@ -117,6 +119,7 @@ public class CourseControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username="user",roles="USER")
 	void testUpdateStudent() throws Exception{
 		when(service.updateCourse(Mockito.any(Course.class))).thenReturn(course1);
 		String uri = STARTING_URI + "/update";
@@ -126,6 +129,7 @@ public class CourseControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username="user",roles="USER")
 	void testDeleteStudent() throws Exception{
 		when(service.deleteCourse(course1.getId())).thenReturn(true);
 		String uri = STARTING_URI + "/delete/1";
