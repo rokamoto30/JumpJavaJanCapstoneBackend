@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 import java.util.ArrayList;
@@ -21,12 +22,9 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-<<<<<<< HEAD
 import org.springframework.http.MediaType;
-=======
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.test.context.support.WithMockUser;
->>>>>>> 69133e1eef61e3e12cdebb7815dead726e62b261
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.cognixia.jump.tutorcapstone.model.Course;
@@ -110,6 +108,7 @@ public class CourseControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username="user",roles="USER")
 	void testPostCourse() throws Exception{
 		String uri = STARTING_URI + "/create";
 		Course tempCourse = new Course(1,  new Subject(), new User(), new ArrayList<Session>(), "Now", 12.00);
@@ -120,6 +119,7 @@ public class CourseControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username="user",roles="USER")
 	void testUpdateStudent() throws Exception{
 		when(service.updateCourse(Mockito.any(Course.class))).thenReturn(course1);
 		String uri = STARTING_URI + "/update";
@@ -129,6 +129,7 @@ public class CourseControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username="user",roles="USER")
 	void testDeleteStudent() throws Exception{
 		when(service.deleteCourse(course1.getId())).thenReturn(true);
 		String uri = STARTING_URI + "/delete/1";
