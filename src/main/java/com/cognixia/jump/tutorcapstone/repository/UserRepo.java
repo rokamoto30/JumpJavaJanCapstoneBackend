@@ -15,7 +15,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     public Optional<User> findByUsername(String username);
     
 
-    @Query(value = "SELECT * FROM user u INNER JOIN course c ON u.id = c.user_id", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT * FROM user u INNER JOIN course c ON u.id = c.user_id GROUP BY u.id", nativeQuery = true)
     public List<User> getTutors(); 
     
     @Query(value = "SELECT u.id, u.description, u.email, u.password, u.pfp_url, u.username, avg(s.rating) as rating FROM user u INNER JOIN course c ON u.id = c.user_id LEFT JOIN session s ON c.id = s.course_id GROUP BY u.id", nativeQuery=true)
