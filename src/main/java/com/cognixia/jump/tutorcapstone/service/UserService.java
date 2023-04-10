@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.cognixia.jump.tutorcapstone.exception.ResourceNotFoundException;
 import com.cognixia.jump.tutorcapstone.model.User;
-import com.cognixia.jump.tutorcapstone.model.UserAndRating;
 import com.cognixia.jump.tutorcapstone.repository.UserRepo;
 
 @Service
@@ -27,6 +26,14 @@ public class UserService {
     public List<User> getUsers() {
 		
 		return repo.findAll();
+	}
+    
+    public List<User> getTutorsRating() {
+		return repo.getTutorsRating();
+	}
+	    
+	public User getTutorRating(String username) {
+		return repo.getTutorRating(username);
 	}
     
     public List<User> getTutors() {

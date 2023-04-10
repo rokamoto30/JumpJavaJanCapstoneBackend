@@ -44,6 +44,7 @@ public class SecurityConfiguration {
         .antMatchers("/api/student/session/cost").hasRole("USER")
         .antMatchers("/api/tutor/session").hasRole("USER")
         .antMatchers("/api/subject").hasRole("USER")
+        .antMatchers("/api/subject/populate").permitAll()
         .antMatchers("/api/user/tutors").hasRole("USER")
         .antMatchers("/swagger-ui/**").permitAll() 
         .antMatchers("/v3/api-docs/**").permitAll()

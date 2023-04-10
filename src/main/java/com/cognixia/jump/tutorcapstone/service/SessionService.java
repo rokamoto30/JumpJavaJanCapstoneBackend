@@ -1,6 +1,7 @@
 package com.cognixia.jump.tutorcapstone.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,14 @@ public class SessionService {
 
     @Autowired
     SessionRepo repo;
+    
+    public Session getById(int id) throws ResourceNotFoundException {
+    	Optional<Session> found = repo.findById(id);
+    	if (found.isEmpty()) {
+    		throw new ResourceNotFoundException("No such session exists");
+    	}
+    	return found.get();
+    }
 
     public Session createSession(Session session){
 
@@ -48,6 +57,17 @@ public class SessionService {
     public List<Session> getSessionByTutor(int id){
         return repo.getSessionsForTutors(id);
     }
+    
+    public Session updateRating(Double rating, int id) throws ResourceNotFoundException {
+		
+		int count = repo.updateRating(rating, id);
+		
+		if( count > 0 ) {
+			return getById(id);
+		}
+		
+		throw new ResourceNotFoundException("No such session exists");
+	}
 
     
 }

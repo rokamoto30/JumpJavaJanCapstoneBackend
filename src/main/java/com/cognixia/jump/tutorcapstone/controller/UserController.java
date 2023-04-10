@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.tutorcapstone.exception.ResourceNotFoundException;
 import com.cognixia.jump.tutorcapstone.model.User;
-import com.cognixia.jump.tutorcapstone.model.UserAndRating;
 import com.cognixia.jump.tutorcapstone.service.UserService;
 
 @RestController
@@ -84,6 +83,17 @@ public class UserController {
 		return ResponseEntity.status(200)
 							 .body("Deleted Student with id = " + id);
 	
+	}
+    
+    @GetMapping("/user/tutorsRating")
+    public List<User> tutorsRating() {
+		
+		return service.getTutorsRating();
+	}
+    
+    @GetMapping("/user/tutorRating/{username}")
+    public User getTutorRating(@PathVariable String username) {
+		return service.getTutorRating(username);
 	}
 	
     
