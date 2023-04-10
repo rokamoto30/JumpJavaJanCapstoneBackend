@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognixia.jump.tutorcapstone.model.Subject;
 import com.cognixia.jump.tutorcapstone.repository.SubjectRepo;
 
+import mysql.PopulateScript;
+
 @RequestMapping("/api/subject")
 @RestController
 @CrossOrigin(maxAge = 3600)
@@ -21,6 +23,11 @@ public class SubjectController {
 	@GetMapping()
 	public List<Subject> getSubjects() {
 		return repo.findAll();
+	}
+	
+	@GetMapping("/populate")
+	public void populate() {
+		PopulateScript.populate(repo);
 	}
 	
 
